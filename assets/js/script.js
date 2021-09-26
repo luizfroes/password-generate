@@ -18,6 +18,14 @@ function generatePassword() {
   const getRandomCharacter = function () {
     return;
   };
+
+  const userCriteria = {
+    length: 0,
+    isUppercase: true,
+    isLowercase: true,
+    isNumeric: true,
+    isSpecialCharacter: true,
+  };
 }
 
 // Write password to the #password input
