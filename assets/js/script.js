@@ -5,17 +5,17 @@ function generatePassword() {
   // PLEASE ADD ALL YOUR CODE HERE
 
   // Should return the password criteria
-  var getCriteria = function () {
+  const getCriteria = function () {
     return;
   };
 
   //Should return generatePassword()
-  var getRandomPassword = function () {
+  const getRandomPassword = function () {
     return;
   };
 
   //Should return a random character from the picked array
-  var getRandomCharacter = function () {
+  const getRandomCharacter = function () {
     return;
   };
 }
