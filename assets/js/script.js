@@ -13,6 +13,11 @@ function generatePassword() {
   var getRandomPassword = function () {
     return;
   };
+
+  //Should return a random character from the picked array
+  var getRandomCharacter = function () {
+    return;
+  };
 }
 
 // Write password to the #password input
