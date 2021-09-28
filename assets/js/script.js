@@ -7,18 +7,36 @@ function generatePassword() {
 // PLEASE ADD ALL YOUR CODE HERE
 
 // Should return the password criteria
-const getLengthCriteria = function () {
-  const userCriteriaLength = prompt(
+function getCriteria() {
+  //Get the password length from the user
+  userCriteria.length = prompt(
     "Please choose the length of your password. (Between 8 and 128 characters)"
   );
-  return userCriteriaLength;
-};
 
-// Validate the Length input true or false
+  // Validate the Length input
+  if (isNaN(userCriteria.length)) {
+    return getCriteria();
+  }
 
-const validateLength = function (userCriteriaLength) {
-  return;
-};
+  const passwordLength = parseInt(userCriteria.length);
+
+  if (passwordLength < 8 || passwordLength > 128) {
+    return getCriteria();
+  }
+
+  //Get the other criteria
+  userCriteria.isLowercase = confirm("Do you wanna use Lowercase characters?");
+
+  userCriteria.isUppercase = confirm("Do you wanna use Uppercase characters?");
+
+  userCriteria.isNumeric = confirm("Do you wanna use Numbers?");
+
+  userCriteria.isSpecialCharacter = confirm(
+    "Do you wanna use Especial characters?"
+  );
+
+  return userCriteria;
+}
 
 //Should return generatePassword()
 const getRandomPassword = function () {
@@ -38,8 +56,8 @@ const userCriteria = {
   isSpecialCharacter: true,
 };
 
-const userCriteriaLength = getLengthCriteria();
-console.log(userCriteriaLength);
+getCriteria();
+console.log(userCriteria);
 
 // Write password to the #password input
 function writePassword() {
