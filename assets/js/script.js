@@ -2,29 +2,34 @@
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
-  return;
+  let userChoices = getCriteria();
+  console.log(userChoices);
+  return "password123";
 }
 // PLEASE ADD ALL YOUR CODE HERE
 
 // Should return the password criteria
 function getCriteria() {
   //Get the password length from the user
-  userCriteria.length = prompt(
-    "Please choose the length of your password. (Between 8 and 128 characters)"
+  const userCriteria = {};
+  userCriteria.length = parseInt(
+    prompt(
+      "Please choose the length of your password. (Between 8 and 128 characters)"
+    )
   );
 
   // Validate the Length input
   if (isNaN(userCriteria.length)) {
-    return getCriteria();
+    alert("Please choose a number between 8 and 128");
+    return;
   }
 
-  const passwordLength = parseInt(userCriteria.length);
-
-  if (passwordLength < 8 || passwordLength > 128) {
-    return getCriteria();
+  if (userCriteria.length < 8 || userCriteria.length > 128) {
+    alert("Please choose a number between 8 and 128");
+    return;
   }
 
-  //Get the other criteria
+  //Get other criteria
   userCriteria.isLowercase = confirm("Do you wanna use Lowercase characters?");
 
   userCriteria.isUppercase = confirm("Do you wanna use Uppercase characters?");
@@ -34,6 +39,17 @@ function getCriteria() {
   userCriteria.isSpecialCharacter = confirm(
     "Do you wanna use Especial characters?"
   );
+
+  // Validate the other criteria
+  if (
+    userCriteria.isLowercase == false &&
+    userCriteria.isUppercase == false &&
+    userCriteria.isNumeric == false &&
+    userCriteria.isSpecialCharacter == false
+  ) {
+    alert("You need to choose at least one type of character!");
+    return;
+  }
 
   return userCriteria;
 }
@@ -47,17 +63,6 @@ const getRandomPassword = function () {
 const getRandomCharacter = function () {
   return;
 };
-
-const userCriteria = {
-  length: 0,
-  isUppercase: true,
-  isLowercase: true,
-  isNumeric: true,
-  isSpecialCharacter: true,
-};
-
-getCriteria();
-console.log(userCriteria);
 
 // Write password to the #password input
 function writePassword() {
