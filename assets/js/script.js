@@ -2,96 +2,103 @@
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
-  let userCriteria = getCriteria();
+  const userCriteria = finalCriteria();
 
+  //Main Array
+  const choicesArray = getChoices(userCriteria);
+
+  //Final password
+  const password = [];
+
+  //Loop
   for (let index = 0; index < userCriteria.length; index++) {
     let userChoices = getChoices();
 
-    //Pick a random array
-    let randomCriteria =
-      userChoices[Math.floor(Math.random() * userChoices.length)];
-
-    //pick a random character from the array
+    //pick a random character from the main array
     let randomCharacter =
-      randomCriteria[Math.floor(Math.random() * randomCriteria.length)];
+      choicesArray[Math.floor(Math.random() * choicesArray.length)];
 
     //Push the character to the password array
     password.push(randomCharacter);
   }
 
-  return console.log(password);
+  return password.join("");
 }
 
-// Should return the password criteria
-function getCriteria() {
-  //Get the password length from the user
-  const userCriteria = {};
-  userCriteria.length = parseInt(
+//Get the password length from the user
+function getLength() {
+  let length = parseInt(
     prompt(
       "Please choose the length of your password. (Between 8 and 128 characters)"
     )
   );
 
   // Validate the Length input
-  if (isNaN(userCriteria.length)) {
+  if (isNaN(length)) {
     alert("Please choose a number between 8 and 128");
-    getCriteria();
+    length = getLength();
   }
 
-  if (userCriteria.length < 8 || userCriteria.length > 128) {
+  if (length < 8 || length > 128) {
     alert("Please choose a number between 8 and 128");
-    getCriteria();
+    length = getLength();
   }
+  return length;
+}
 
-  //Get other criteria
-  userCriteria.isLowercase = confirm("Do you wanna use Lowercase characters?");
+//Get other criteria
+function getCriteria() {
+  const isLowercase = confirm("Do you wanna use Lowercase characters?");
 
-  userCriteria.isUppercase = confirm("Do you wanna use Uppercase characters?");
+  const isUppercase = confirm("Do you wanna use Uppercase characters?");
 
-  userCriteria.isNumeric = confirm("Do you wanna use Numbers?");
+  const isNumeric = confirm("Do you wanna use Numbers?");
 
-  userCriteria.isSpecialCharacter = confirm(
-    "Do you wanna use Especial characters?"
-  );
+  const isSpecialCharacter = confirm("Do you wanna use Especial characters?");
 
   // Validate the other criteria
-  if (
-    userCriteria.isLowercase == false &&
-    userCriteria.isUppercase == false &&
-    userCriteria.isNumeric == false &&
-    userCriteria.isSpecialCharacter == false
-  ) {
+  if (!isLowercase && !isUppercase && !isNumeric && !isSpecialCharacter) {
     alert("You need to choose at least one type of character!");
-    getCriteria();
+    return getCriteria();
   }
+
+  return { isLowercase, isUppercase, isNumeric, isSpecialCharacter };
+}
+
+//Store the data inside an object
+function finalCriteria() {
+  const userCriteria = {};
+  userCriteria.length = getLength();
+
+  const { isLowercase, isUppercase, isNumeric, isSpecialCharacter } =
+    getCriteria();
+  userCriteria.isLowercase = isLowercase;
+  userCriteria.isUppercase = isUppercase;
+  userCriteria.isNumeric = isNumeric;
+  userCriteria.isSpecialCharacter = isSpecialCharacter;
 
   return userCriteria;
 }
 
-//Final password
-let password = [];
-
-//User choices
-let userChoices = [];
-
 //Push the criteria to the userChoices array
-function getChoices() {
-  let userCriteria = getCriteria();
+function getChoices(userCriteria) {
+  //User choices
+  let userChoices = [];
 
-  if (userCriteria.isLowercase == true) {
-    return userChoices.push(lowercase);
+  if (userCriteria.isLowercase) {
+    userChoices = userChoices.concat(lowercase);
   }
 
-  if (userCriteria.isUppercase == true) {
-    return userChoices.push(uppercase);
+  if (userCriteria.isUppercase) {
+    userChoices = userChoices.concat(uppercase);
   }
 
-  if (userCriteria.isNumeric == true) {
-    return userChoices.push(numeric);
+  if (userCriteria.isNumeric) {
+    userChoices = userChoices.concat(numeric);
   }
 
-  if (userCriteria.isSpecialCharacter == true) {
-    return userChoices.push(specialCharacters);
+  if (userCriteria.isSpecialCharacter) {
+    userChoices = userChoices.concat(specialCharacters);
   }
 
   return userChoices;
