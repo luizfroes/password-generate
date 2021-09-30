@@ -53,9 +53,29 @@ function getCriteria() {
   return userCriteria;
 }
 
-//Create a array of user choices
+//User choices
 let userChoices = [];
 
+//Push the criteria to the userChoices array
+function getChoices() {
+  let userCriteria = getCriteria();
+
+  if (userCriteria.isLowercase == true) {
+    return userChoices.push(lowercase);
+  }
+
+  if (userCriteria.isUppercase == true) {
+    return userChoices.push(uppercase);
+  }
+
+  if (userCriteria.isNumeric == true) {
+    return userChoices.push(numeric);
+  }
+
+  if (userCriteria.isSpecialCharacter == true) {
+    return userChoices.push(specialCharacters);
+  }
+}
 //Pick a random array
 //pick a random character from the array
 //Push the character to the password array
@@ -153,6 +173,9 @@ const specialCharacters = [
   "}",
   "~",
 ];
+
+getChoices();
+console.log(userChoices);
 
 // Write password to the #password input
 function writePassword() {
