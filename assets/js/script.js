@@ -4,7 +4,22 @@ var generateBtn = document.querySelector("#generate");
 function generatePassword() {
   let userCriteria = getCriteria();
 
-  return "password123";
+  for (let index = 0; index < userCriteria.length; index++) {
+    let userChoices = getChoices();
+
+    //Pick a random array
+    let randomCriteria =
+      userChoices[Math.floor(Math.random() * userChoices.length)];
+
+    //pick a random character from the array
+    let randomCharacter =
+      randomCriteria[Math.floor(Math.random() * randomCriteria.length)];
+
+    //Push the character to the password array
+    password.push(randomCharacter);
+  }
+
+  return console.log(password);
 }
 
 // Should return the password criteria
@@ -53,6 +68,9 @@ function getCriteria() {
   return userCriteria;
 }
 
+//Final password
+let password = [];
+
 //User choices
 let userChoices = [];
 
@@ -75,10 +93,9 @@ function getChoices() {
   if (userCriteria.isSpecialCharacter == true) {
     return userChoices.push(specialCharacters);
   }
+
+  return userChoices;
 }
-//Pick a random array
-//pick a random character from the array
-//Push the character to the password array
 
 //Declaring Arrays
 const lowercase = [
@@ -173,9 +190,6 @@ const specialCharacters = [
   "}",
   "~",
 ];
-
-getChoices();
-console.log(userChoices);
 
 // Write password to the #password input
 function writePassword() {
