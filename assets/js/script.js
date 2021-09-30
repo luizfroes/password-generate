@@ -12,8 +12,6 @@ function generatePassword() {
 
   //Loop
   for (let index = 0; index < userCriteria.length; index++) {
-    let userChoices = getChoices();
-
     //pick a random character from the main array
     let randomCharacter =
       choicesArray[Math.floor(Math.random() * choicesArray.length)];
