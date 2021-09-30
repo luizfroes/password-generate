@@ -35,12 +35,12 @@ function getCriteria() {
   // Validate the Length input
   if (isNaN(userCriteria.length)) {
     alert("Please choose a number between 8 and 128");
-    return;
+    getCriteria();
   }
 
   if (userCriteria.length < 8 || userCriteria.length > 128) {
     alert("Please choose a number between 8 and 128");
-    return;
+    getCriteria();
   }
 
   //Get other criteria
@@ -62,7 +62,7 @@ function getCriteria() {
     userCriteria.isSpecialCharacter == false
   ) {
     alert("You need to choose at least one type of character!");
-    return;
+    getCriteria();
   }
 
   return userCriteria;
