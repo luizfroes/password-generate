@@ -2,11 +2,10 @@
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
-  let userChoices = getCriteria();
-  console.log(userChoices);
+  let userCriteria = getCriteria();
+
   return "password123";
 }
-// PLEASE ADD ALL YOUR CODE HERE
 
 // Should return the password criteria
 function getCriteria() {
@@ -54,15 +53,12 @@ function getCriteria() {
   return userCriteria;
 }
 
-//Should return generatePassword()
-const getRandomPassword = function () {
-  return;
-};
+//Create a array of user choices
+let userChoices = [];
 
-//Should return a random character from the picked array
-const getRandomCharacter = function () {
-  return;
-};
+//Pick a random array
+//pick a random character from the array
+//Push the character to the password array
 
 //Declaring Arrays
 const lowercase = [
